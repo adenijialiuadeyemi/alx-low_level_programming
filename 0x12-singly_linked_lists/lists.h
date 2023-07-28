@@ -2,24 +2,26 @@
 #define LISTS_H
 
 /**
- * Description: Holberton project on Singly Linked List
- * struct char_arr - singly linked list
- * @str: string - (malloc string)
- * @len: to determine how long a string is
- * @next: this points to the next node
+ * struct list_s - singly linked list
+ * @str: string - malloc string
+ * @next: access the next node
+ * @len: string length
+ *
+ * Description: node structure for Singly Linked List
+ * Project for Adeniji Aliu Adeyemi
  */
-
-typedef struct char_arr
+typedef struct list_s
 {
 	char *str;
 	unsigned int len;
-	struct char_arr *next;
-} t_arr;
+	struct list_s *next;
+} list_t;
 
-size_t print_list(const t_arr *h);
-size_t list_len(const t_arr *h);
-list_t *add_node(t_arr **head, const char *str);
-list_t *add_node_end(t_arr **head, const char *str);
-void free_list(t_arr *head);
+size_t list_len(const list_t *h);
+size_t print_list(const list_t *h);
+list_t *add_node(list_t **head, const char *str);
+list_t *add_node_end(list_t **head, const char *str);
+void free_list(list_t *head);
+
 #endif
 
