@@ -18,7 +18,7 @@ while (str[len])
 len++;
 
 new = malloc(sizeof(list_t));
-if (new)
+if (!new)
 new->str = strdup(str);
 new->len = len;
 new->next = (*head);
