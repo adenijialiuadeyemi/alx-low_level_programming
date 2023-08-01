@@ -5,8 +5,8 @@
  * @head: aiming at the first element of the linked_list
  * @n: entering data into the new_node
  *
- * Return: ptr to a new_node,otherwise return NULL 
- * */
+ * Return: ptr to a new_node,otherwise return NULL
+ */
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
 listint_t *new_node;
@@ -26,4 +26,3 @@ tmp = tmp->next;
 tmp->next = new_node;
 return (new_node);
 }
-
