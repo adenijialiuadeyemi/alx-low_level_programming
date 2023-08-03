@@ -24,4 +24,3 @@ _putchar('0');
 if (!c)
 _putchar('0');
 }
-
