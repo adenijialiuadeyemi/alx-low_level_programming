@@ -34,7 +34,7 @@ if (k == idx - 1)
 {
 new_node->next = tmp->next;
 tmp->next = new_node;
-return (new);
+return (new_node);
 }
 else
 tmp = tmp->next;
