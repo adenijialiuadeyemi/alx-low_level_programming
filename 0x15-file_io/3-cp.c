@@ -20,8 +20,7 @@ buff = malloc(sizeof(char) * 1024);
 
 if (!buff)
 {
-dprintf(STDERR_FILENO,
-"Unable to write to %s\n", file);
+dprintf(STDERR_FILENO, "Unable to write to %s\n", file);
 exit(99);
 }
 return (buff);
@@ -34,7 +33,7 @@ return (buff);
 
 void close_file(int fd)
 {
-int c;
+int cl;
 
 cl = close(fd);
 
@@ -46,7 +45,7 @@ exit(100);
 }
 
 /**
- * main - Copies the contents of a file to another file.
+ * main - The contents of a file is moved to another.
  * @argc: count of total args.
  * @argv: Aiming at the content of the arr.
  *
@@ -71,23 +70,21 @@ exit(97);
 
 buff = create_buffer(argv[2]);
 src = open(argv[1], O_RDONLY);
-rd = read(src, buffer, 1024);
+rd = read(src, buff, 1024);
 dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 do {
-if (src == -1 || r == -1)
+if (src == -1 || rd == -1)
 {
-dprintf(STDERR_FILENO,
-"Unable to read %s\n", argv[1]);
+dprintf(STDERR_FILENO, "Unable to read %s\n", argv[1]);
 free(buff);
 exit(98);
 }
 
-wr = write(dest, buff, r);
+wr = write(dest, buff, rd);
 if (dest == -1 || wr == -1)
 {
-dprintf(STDERR_FILENO,
-"Unable to write in %s\n", argv[2]);
+dprintf(STDERR_FILENO, "Unable to write in %s\n", argv[2]);
 free(buff);
 exit(99);
 }
@@ -96,7 +93,6 @@ rd = read(src, buff, 1024);
 dest = open(argv[2], O_WRONLY | O_APPEND);
 
 } while (rd > 0);
-
 free(buff);
 close_file(src);
 close_file(dest);
