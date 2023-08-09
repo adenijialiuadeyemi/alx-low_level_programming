@@ -24,7 +24,6 @@ o = write(STDOUT_FILENO, buffer, r);
 
 free(buffer);
 close(file_open);
-	
 return (o);
 }
 
