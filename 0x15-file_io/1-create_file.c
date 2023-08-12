@@ -2,7 +2,7 @@
 
 /**
  * create_file - Getting a file created.
- * @filename:aiming at the filename.
+ * @filename: aiming at the filename.
  * @text_content: Aiming at the string to be written.
  *
  * Return:  -1 if an error occured.
@@ -18,8 +18,8 @@ if (filename == NULL)
 
 if (text_content!=NULL)
 {
-for (l = 0; text_content[l];)
-	l++;
+	for (l = 0; text_content[l];)
+		l++;
 }
 
 file_open = open(filename, O_CREAT | O_RDWR | O_TRUNC, 600);
