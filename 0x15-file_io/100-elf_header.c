@@ -28,7 +28,7 @@ void check_for_elf(unsigned char *eid)
 {
 	int ind;
 
-	for (ind = 0; inde < 4; ind++)
+	for (ind = 0; ind < 4; ind++)
 	{
 		if (eid[ind] != 127 &&
 		    eid[ind] != 'E' &&
@@ -109,7 +109,7 @@ void print_data(unsigned char *eid)
 		printf("2's complement, big endian\n");
 		break;
 	default:
-		printf("<class_unknown: %x>\n", e_ident[EI_CLASS]);
+		printf("<class_unknown: %x>\n", eid[EI_CLASS]);
 	}
 }
 
@@ -119,7 +119,7 @@ void print_data(unsigned char *eid)
  */
 void version_print(unsigned char *eid)
 {
-	 printf("ELF_Version: %d",eid[EI_VERSION]);
+	 printf("ELF_Version: %d", eid[EI_VERSION]);
 
 	switch (eid[EI_VERSION])
 	{
@@ -183,8 +183,7 @@ void print_osabi(unsigned char *e_ident)
  */
 void print_abi(unsigned char *e_ident)
 {
-	printf(" ABI Version: %d\n",
-		e_ident[EI_ABIVERSION]);
+printf(" ABI Version: %d\n", e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -226,7 +225,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
  * @e_entry: The mem_location of the ELF_entry_point.
  * @e_ident: Aiming at an array containing the ELF class.
  */
-void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+void entry_print(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf(" Entry point address: ");
 
@@ -282,14 +281,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	header = malloc(sizeof(Elf64_Ehdr));
+	head = malloc(sizeof(Elf64_Ehdr));
 	if (!head)
 	{
 		close_elf(op);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	rd = read(op, header, sizeof(Elf64_Ehdr));
+	rd = read(op, head, sizeof(Elf64_Ehdr));
 	if (rd == -1)
 	{
 		free(head);
@@ -298,16 +297,16 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	check_elf(head->e_ident);
+	check_for_elf(head->e_ident);
 	printf("ELF Header:\n");
-	print_magic(head->e_ident);
+	magic_print(head->e_ident);
 	print_class(head->e_ident);
 	print_data(head->e_ident);
-	print_version(head->e_ident);
+	version_print(head->e_ident);
 	print_osabi(head->e_ident);
 	print_abi(head->e_ident);
 	print_type(head->e_type, head->e_ident);
-	print_entry(head->e_entry, head->e_ident);
+	entry_print(head->e_entry, head->e_ident);
 
 	free(head);
 	close_elf(op);
