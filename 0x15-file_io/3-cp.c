@@ -64,14 +64,14 @@ char *buff;
 
 if (argc != 3)
 {
-dprintf(STDERR_FILENO, "copy file from src to dest\n");
+dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 exit(97);
 }
 
 buff = create_buffer(argv[2]);
 src = open(argv[1], O_RDONLY);
 rd = read(src, buff, 1024);
-dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 
 do {
 if (src == -1 || rd == -1)
