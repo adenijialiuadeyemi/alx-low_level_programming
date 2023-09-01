@@ -16,12 +16,12 @@ void print_binary(unsigned long int n)
 		if (present & 1)
 		{
 			_putchar('1');
-			count_i++;
+			count++;
 		}
-		else if (count_i)
+		else if (count)
 			_putchar('0');
 	}
-	if (!count_i)
+	if (!count)
 		_putchar('0');
 }
 
