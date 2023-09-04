@@ -14,15 +14,15 @@ int fd;
 ssize_t num_read, num_written;
 char *bufer;
 if (!filename)
-        return (0);
+	return (0);
 /* Opening the file */
 fd = open(filename, O_RDONLY);
 if (fd == -1)
-        return (0);
+	return (0);
 /* Allocating Memory */
 bufer = malloc(sizeof(char) * letters);
 if (bufer == NULL)
-        return(0);
+	return (0);
 /* Reading the file */
 num_read = read(fd, bufer, letters);
 /* Writing to a file */
