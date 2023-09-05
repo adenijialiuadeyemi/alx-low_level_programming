@@ -1,5 +1,7 @@
 #include <elf.h>
 #include "main.h"
+#include "extension.h"
+#include "extension2.h"
 /**
  * print_class - Prints the class of an ELF header.
  * @elf_id: A pointer to an array containing the ELF class.
