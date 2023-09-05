@@ -21,7 +21,7 @@ char *create_buffer(char *filename)
 	return (bufer);
 }
 /**
- *close_file - Closing a file 
+ *close_file - Closing a file
  *@fd: file_descr
  *Return: void
  */
@@ -59,11 +59,11 @@ int main(int argc, char *argv[])
 	bufer = create_buffer(argv[2]);
 
 	sorce = open(argv[1], O_RDONLY);
-	rd =  read(from, bufer, 1024);
-	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	rd =  read(sorce, bufer, 1024);
+	destin = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
-		if (rd == -1 || from == -1)
+		if (rd == -1 || sorce == -1)
 		{
 			dprintf(STDERR_FILENO,
 					"Error: Can't read from file %s\n", argv[1]);
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 		}
 
 		rd = read(sorce, bufer, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
+		destin = open(argv[2], O_WRONLY | O_APPEND);
 	} while (rd > 0);
 
 	free(bufer);
