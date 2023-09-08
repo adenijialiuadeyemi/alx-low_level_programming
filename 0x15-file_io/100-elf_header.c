@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void check_elf(unsigned char *e_ident);
+void elf_chk(unsigned char *e_ident);
 void print_magic(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
@@ -156,6 +156,8 @@ void print_type(unsigned int e_type, unsigned char *elf_id)
 	case ET_EXEC:
 		printf("EXEC (Executable file)\n");
 		break;
+	}
+}
 /**
  * print_entry - Prints the entry point of an ELF header.
  * @e_entry: The address of the ELF entry point.
@@ -212,12 +214,14 @@ void elf_chk(unsigned char *elf_id)
 		}
 	}
 }
+
 /**
  * print_magic - Printing the ELF Magic Num
  * @elf_id: Aiming at the array of ELF file
  *
  * Description: Magic num with space separator
  */
+
 void print_magic(unsigned char *elf_id)
 {
 	int idx;
@@ -281,6 +285,4 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	free(bufer);
 	close_elf(fd);
 	return (0);
-}
-}
 }
